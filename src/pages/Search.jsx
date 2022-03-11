@@ -2,6 +2,7 @@ import {useState} from 'react'
 import Card from '../components/Card'
 
 import axios from "axios";
+import { Link } from 'react-router-dom';
 
 function Search() {
     const [query,setQuery]=useState('')
@@ -56,8 +57,9 @@ function Search() {
 
             <div className=' grid grid-cols-1 gap-8  sm:grid-cols-2'>
             {list.map((anime)=>(
-
-                <Card anime={anime}/>
+                
+                <Card key={anime.mal_id} anime={anime}/>
+                
             ))}
                 
             </div>

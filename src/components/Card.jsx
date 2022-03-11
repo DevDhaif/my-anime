@@ -1,10 +1,12 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
  
 const aotImg=`https://i0.wp.com/www.animegeek.com/wp-content/uploads/2020/05/Attack-On-Titan-Season-4-release-date-delayed-MAPPA-Shingeki-no-Kyojin-Season-4.jpg?resize=1024%2C576&ssl=1`
 
 function Card({anime}) {
     const [query,setQuery]=useState('')
   return (
+    <Link to={`/${anime.mal_id}/${anime.title}`}>
     <div className='bg-bg-third text-bg-dark flex flex-col md:flex-row justify-between  relative rounded-md shadow-xl shadow-t-prime  ' >
         <div className='md:w-96'>
             <img className='w-96 object-cover h-full' src={anime.image_url} alt="" />
@@ -13,7 +15,7 @@ function Card({anime}) {
             <p className="font-poppins tracking-[0.7rem] text-2xl">MAPPA</p>
             
             <div className='flex flex-col space-y-4'>
-                <p className='uppercase text-4xl max-w-sm'> <span className='text-red-500'> {anime.title.split(' ')[0]} </span>  <br />{anime.title.substr(anime.title.indexOf(" ") + 1)}</p>
+                <p className='uppercase text-4xl max-w-sm'> <span className='text-red-500'> { anime.title.split(' ')[0]} </span>  <br />{anime.title.substr(anime.title.indexOf(" ") + 1)}</p>
                 <div className='flex font-semibold uppercase justify-between  relative'>
                     <div className=''>
                     <p>{anime.score}</p>
@@ -44,6 +46,7 @@ function Card({anime}) {
 
         
     </div>
+    </Link>
   )
 }
 
