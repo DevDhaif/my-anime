@@ -1,13 +1,20 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
  
 const aotImg=`https://i0.wp.com/www.animegeek.com/wp-content/uploads/2020/05/Attack-On-Titan-Season-4-release-date-delayed-MAPPA-Shingeki-no-Kyojin-Season-4.jpg?resize=1024%2C576&ssl=1`
 
 function Card({anime}) {
     const [query,setQuery]=useState('')
+    const navigate=useNavigate()
+    const handleClick=()=>{
+        navigate(`${anime.mal_id}`,{state:anime})
+    }
   return (
-    <Link to={`/${anime.mal_id}/${anime.title}`}>
-    <div className='bg-bg-third text-bg-dark flex flex-col md:flex-row justify-between  relative rounded-md shadow-xl shadow-t-prime  ' >
+    
+
+    
+    
+    <div onClick={handleClick} className='bg-bg-third text-bg-dark flex flex-col md:flex-row justify-between  relative rounded-md shadow-xl shadow-t-prime  ' >
         <div className='md:w-96'>
             <img className='w-96 object-cover h-full' src={anime.image_url} alt="" />
         </div>
@@ -46,7 +53,6 @@ function Card({anime}) {
 
         
     </div>
-    </Link>
   )
 }
 

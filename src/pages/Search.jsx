@@ -26,7 +26,7 @@ function Search() {
         };
 
         axios.request(options).then(function (response) {
-            console.log(response.data.results);
+            
             setList(response.data.results)
         }).catch(function (error) {
             console.error(error);
