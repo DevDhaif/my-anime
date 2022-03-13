@@ -1,73 +1,101 @@
 import {useState,useEffect} from 'react'
 import {useNavigate,useParams,Link, useLocation} from 'react-router-dom'
 import axios from 'axios'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import {GoEye} from 'react-icons/go'
 
 
-const aot='https://i0.wp.com/www.animegeek.com/wp-content/uploads/2020/05/Attack-On-Titan-Season-4-release-date-delayed-MAPPA-Shingeki-no-Kyojin-Season-4.jpg'
-const aot1="https://cdn.myanimelist.net/images/anime/1173/92110.jpg?s=410d006fea0608544e9861a6f261c692"
 function Item() {
-    const [anime,setAnime]=useState({})
+    const [anime,setAnime]=useState([])
+    const [animeDetails,setAnimeDetails]=useState({})
+
+
     const location = useLocation();
 
+    const params=useParams()
+
     useEffect(()=>{
-        setAnime(location.state)
+        setAnimeDetails(location.state)
+        fetchAnimeDetails()
     },[])
-    // const [anime,setAnime]=useState({})
 
-    // const navigate=useNavigate()
-    // const params=useParams()
+    const fetchAnimeDetails=async()=>{
 
+            const options = {
+            method: 'GET',
+            url: `https://jikan1.p.rapidapi.com/anime/${params.animeId}/episodes`,
+            headers: {
+                'x-rapidapi-host': 'jikan1.p.rapidapi.com',
+                'x-rapidapi-key': 'a5990e9e61mshcc17f1aac7fdd5ap12a58ajsn263efd24ef47'
+            }
+            };
 
-    // useEffect(()=>{
-//         const fetchAnime=()=>{
+            axios.request(options).then(function (response) {
+                console.log(response.data.episodes);
+                setAnime(response.data.episodes);
+                console.log(anime);
+                
+            }).catch(function (error) {
+                console.error(error);
+            });
+    }
 
-        
-//         const options = {
-//   method: 'GET',
-//   url: 'https://jikan1.p.rapidapi.com/search/anime',
-//   params: {q: params.animeTitle},
-//   headers: {
-//     'x-rapidapi-host': 'jikan1.p.rapidapi.com',
-//     'x-rapidapi-key': 'a5990e9e61mshcc17f1aac7fdd5ap12a58ajsn263efd24ef47'
-//   }
-// };
-
-// axios.request(options).then(function (response) {
-// 	console.log(response.data.results[0]);
-//     setAnime(response.data.results[0])
-// }).catch(function (error) {
-// 	console.error(error);
-// });
-// }
-// fetchAnime()
-    // },[navigate,params.animeId])
-    
   return (
-      <> 
-      {true &&(
+      <div className='flex flex-col'>
+      {anime &&(
+    <div className=''>
+        <main className='h-screen  py-4 bg-center bg-no-repeat bg-cover bg-opacity-10 ' style={{ 
+                backgroundImage: `url(${animeDetails.image_url})`}}>
+            
+            
+            <section  className='h-full w-full  bg-bg-dark/70 rounded-md  text-white  flex flex-col md:flex-row space-y-4  shadow-xl shadow-gray-100  '>
 
-        <main className='h-screen bg-center bg-no-repeat bg-cover ' style={{ 
-                backgroundImage: `url(${anime.image_url})`}}>
-            
-            
-            <section className='h-full w-full bg-bg-third/70 rounded-md   text-bg-dark flex flex-col space-y-4  shadow-xl shadow-gray-100  '>
-            
                     <div className='w-full'>
-                        <img className='w-screen ' src={`${anime.image_url}`} alt="" />
+                        <img className='w-screen ' src={`${animeDetails.image_url}`} alt="" />
                     </div>
-                    <div className='px-4 space-y-4 py-7 max-w-sm'>
-                        <p className='text-center text-2xl font-robert font-semibold tracking-wider'>{anime.title} </p>
-                        <p className='text-xl '>Episodes {anime.episodes}</p>
-                        <p className='max-w-xs'>{anime.synopsis}</p>
-                        <p>{anime.score}</p>
-                        <p>{anime.members}</p>
-                        <p>{anime.rated}</p>
+                    
+                    <div className='px-4 space-y-4 py-7 max-w-sm bg-inherit w-full'>
+                        <p className='text-center text-2xl font-robert font-semibold tracking-wider'>{animeDetails.title} </p>
+                        <p className='text-xl '>Episodes {animeDetails.episodes}</p>
+                        <p className='max-w-xs'>{animeDetails.synopsis}</p>
+                        <p>{animeDetails.score}</p>
+                        <p>{animeDetails.members}</p>
+                        <p>{animeDetails.rated}</p>
                     </div>
+                    
             </section>
-           
+            
         </main>
+        
+        <div className='bg-inherit space-y-12 py-8'>
+                    <h1 className='text-center text-3xl'>Episodes</h1>
+                    
+                        
+                        <div className='flex mb-4 h-full space-x-3 items-center'>
+                        <Swiper
+                                spaceBetween={50}
+                                slidesPerView={2}
+                                >
+                                {anime.map((ep)=>(
+                                <SwiperSlide key={ep.episode_id}>
+                                <p className=''>{ep.episode_id} {ep.title}</p>
+                                <a className='text-blue-500 text-lg' href={ep.video_url} target="_blank" rel="noopener noreferrer">
+                                <GoEye className='fill-blue-500 hover:fill-blue-700'/>
+                                </a>
+                                </SwiperSlide>
+                                ))}
+                                
+                                </Swiper>
+                        
+                                 
+                        
+                        </div>
+                    
+                    </div>
+        </div>
       )}
-      </>
+     </div>
   )
 }
 

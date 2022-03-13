@@ -17,7 +17,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Home/>}/>
             <Route path='/search' element={<Search/>}/>
-            <Route exact path="/:animeId/:animeTitle" element={<Item />}/>
+            <Route exact path="/search/:animeId" element={<Item />}/>
             
           </Routes>
         </div>

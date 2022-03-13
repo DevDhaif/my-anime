@@ -4,6 +4,19 @@ module.exports = {
   ],
   theme: {
     extend: {
+      keyframes:{
+        load:{
+          "from": {
+            transform: "rotate(0deg)"
+          },
+          "to":{
+            transform:("rotate(360deg)")
+          }
+        },
+      },
+      animation: {
+        load:"load 1s linear infinite"
+      },
       colors: {
         bg:{
           'dark':'#0a0c11',

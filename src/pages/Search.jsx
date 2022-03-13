@@ -3,16 +3,18 @@ import Card from '../components/Card'
 
 import axios from "axios";
 import { Link } from 'react-router-dom';
+import Spinner from '../components/Spinner';
 
 function Search() {
     const [query,setQuery]=useState('')
     const [list,setList]=useState([])
+    const [loading,setLoading]=useState(false)
 
 
 
     const handleSearch=(e)=>{
         e.preventDefault();
-
+        setLoading(true)
         
 
         const options = {
@@ -28,6 +30,7 @@ function Search() {
         axios.request(options).then(function (response) {
             
             setList(response.data.results)
+            setLoading(false)
         }).catch(function (error) {
             console.error(error);
         });
@@ -54,7 +57,12 @@ function Search() {
                 type="submit"
                 >Search</button>
             </form>
+            {loading && (
+                <Spinner/>
+            )}
+            {list &&(
 
+            
             <div className=' grid grid-cols-1 gap-8  sm:grid-cols-2'>
             {list.map((anime)=>(
                 
@@ -63,6 +71,7 @@ function Search() {
             ))}
                 
             </div>
+            )}
         </main>
     </div>
   )
