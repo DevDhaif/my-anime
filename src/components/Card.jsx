@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
  
-const aotImg=`https://i0.wp.com/www.animegeek.com/wp-content/uploads/2020/05/Attack-On-Titan-Season-4-release-date-delayed-MAPPA-Shingeki-no-Kyojin-Season-4.jpg?resize=1024%2C576&ssl=1`
+const aotImg=
+`https://i0.wp.com/www.animegeek.com/wp-content/uploads/2020/05/Attack-On-Titan-Season-4-release-date-delayed-MAPPA-Shingeki-no-Kyojin-Season-4.jpg?resize=1024%2C576&ssl=1`
 
 function Card({anime}) {
     const [query,setQuery]=useState('')
@@ -34,7 +35,7 @@ function Card({anime}) {
                     <p> rotten tomatoes</p>
                     </div>
                 </div>
-                <p className='max-w-xs text-left'>{anime.synopsis}</p>
+                <p className='text-center truncate'>{anime.synopsis} as;lfjsd;lfkhs</p>
             </div>
             <div className='flex space-x-2 justify-between items-center  '>
                 <div>
