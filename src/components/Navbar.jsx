@@ -25,7 +25,11 @@ function Navbar() {
                 className= {`px-2 py-1 rounded-md hover:bg-bg-prime/50 cursor-pointer ${pathMatchRoute('/')?'bg-bg-prime':''}`}
                 onClick={()=>navigate('/')}
                 >Explore</button>
-
+                
+                <button 
+                className= {`px-2 py-1 rounded-md hover:bg-bg-prime/50 cursor-pointer ${pathMatchRoute('/search')?'bg-bg-prime':''}`}
+                onClick={()=>navigate('/upcoming')}
+                >Upcoming</button>
 
                 <button 
                 className= {`px-2 py-1 rounded-md hover:bg-bg-prime/50 cursor-pointer ${pathMatchRoute('/search')?'bg-bg-prime':''}`}

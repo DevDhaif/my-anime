@@ -4,6 +4,7 @@ import './index.css'
 import Home from './pages/Home'
 import Item from './pages/Item'
 import Search from './pages/Search'
+import Upcoming from './pages/Upcoming'
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <div className='px-6 '>
           <Routes>
             <Route path='/' element={<Home/>}/>
+            <Route path='/upcoming' element={<Upcoming/>}/>
             <Route path='/search' element={<Search/>}/>
             <Route exact path="/search/:animeId" element={<Item />}/>
             
