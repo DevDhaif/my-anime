@@ -1,4 +1,5 @@
 import {BrowserRouter as Router,Routes,Route} from 'react-router-dom' 
+import { useEffect } from 'react/cjs/react.production.min'
 import Navbar from './components/Navbar'
 import './index.css'
 import Home from './pages/Home'

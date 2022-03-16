@@ -3,28 +3,37 @@ import axios from 'axios';
 import SwiperCore, {Navigation,Scrollbar,Pagination,A11y,Autoplay} from 'swiper'
 import {Swiper,SwiperSlide} from 'swiper/react'
 import 'swiper/css';
+import Spinner from '../components/Spinner';
+
+const api = {
+  base: import.meta.env.VITE_BASE_URL,
+  host: import.meta.env.VITE_HOST,
+  key: import.meta.env.VITE_KEY
+};
 
 function Upcoming() {
+  
     const [list,setList]=useState([])
+    const [loading,setLoading]=useState(false)
+   
   useEffect(()=>{
-    
+    console.log(api);
     fetchAnimeDetails()
 },[])
   const fetchAnimeDetails=async()=>{
-
+    setLoading(true)
     const options = {
     method: 'GET',
-    url: `https://jikan1.p.rapidapi.com/top/anime/1/upcoming`,
+    url: `${api.base}/top/anime/1/upcoming`,
     headers: {
-        'x-rapidapi-host': 'jikan1.p.rapidapi.com',
-        'x-rapidapi-key': 'a5990e9e61mshcc17f1aac7fdd5ap12a58ajsn263efd24ef47'
+        'x-rapidapi-host': `${api.host}`,
+        'x-rapidapi-key': `${api.key}`
     }
     };
 
     axios.request(options).then(function (response) {
-        console.log(response.data.top);
         setList(response.data.top);
-        console.log(list);
+        setLoading(false)
         
     }).catch(function (error) {
         console.error(error);
@@ -34,6 +43,8 @@ function Upcoming() {
   return (
     <div className='container space-y-8 mt-4'> 
     <h1 className='text-center text-2xl  font-robert text-t-dark  tracking-widest'><span className='text-teal-300 font-bold'> Upcoming</span> Animes</h1>
+    
+    {loading && <Spinner/>}
     <Swiper className=''
   modules={[Navigation, Pagination, Scrollbar, A11y,Autoplay]}
                   spaceBetween={50}
@@ -51,7 +62,7 @@ function Upcoming() {
                   }}
                   loop={true}
                   autoplay={{
-                      delay: 1000,
+                      delay: 3000,
                       disableOnInteraction: false
                   }}
                   scrollbar={{ draggable: true, dragSize: 24 }}
@@ -77,7 +88,7 @@ function Upcoming() {
       {list.map((ep)=>(
       
         <div key={ep.mal_id} className=' relative rounded-md shadow-md shadow-gray-50'>
-        <p className={`absolute top-0 rounded-md bg-bg-dark/70  right-0 px-4 py-1 ${ep.type==="TV"?"text-red-500":"text-green-500"}`}> {ep.type==="TV"?"Serie":"Movie"}</p>
+        <p className={`absolute top-0 rounded-md bg-bg-dark right-0 px-4 py-1 text-lg font-semibold tracking-wider ${ep.type==="TV"?"text-rose-500":"text-green-500"}`}> {ep.type==="TV"?"Serie":"Movie"}</p>
 
         <div className='absolute bg-bg-dark/90  h-36 w-full px-4 text-lg py-4  flex space-x-4 justify-between bottom-0'>
         

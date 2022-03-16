@@ -2,7 +2,6 @@ import React,{ useEffect }  from 'react'
 import { useNavigate } from 'react-router-dom'
 
 function SimpleCard({an}) {
-    console.log(an.producers[0].name);
   const navigate=useNavigate()
   const handleClick=()=>{
     navigate(`/search/${an.mal_id}`,{state:an})
