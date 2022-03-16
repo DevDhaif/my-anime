@@ -52,16 +52,16 @@ function Item() {
             
                 <div class="p-4 space-y-8   bg-bg-dark/70  md:h-full text-white   justify-around    rounded-md shadow-md shadow-white ">
                 <section class="w-full md:flex md:flex-row   justify-start space-x-4">
-                  <img class="w-full  object-cover max-h-96  " src={animeDetails.image_url} alt=""/>
-                  <div class="space-y-3 px-2 py-8   h-full  w-full">
-                      <p>{animeDetails.title}</p>
+                  <img class="w-full block object-cover  sm:max-w-xs " src={animeDetails.image_url} alt=""/>
+                  <div class="space-y-3 px-2 py-8  w-full">
+                      <p className='text-lg text-center font-robert font-bold tracking-wider'>{animeDetails.title}</p>
                       <p>{animeDetails.airing}   </p>
-                      <p class="max-w-sm">{animeDetails.synopsis}</p>
-                      <p>{animeDetails.type}</p>
-                      <p>{animeDetails.episodes}</p>
-                      <p>{animeDetails.score}</p>
+                      <p class="leading-8 text-left font-medium text-base">{animeDetails.synopsis}</p>
+                      <p className='text-red-500'> {animeDetails.type}</p>
+                      <p className='text-lg'>Episodes : {animeDetails.episodes}</p>
+                      <p className=' text-lg'>Score {animeDetails.score}</p>
                       <p>{animeDetails.rated}</p>
-                      <p>{animeDetails.members}</p>
+                      <p className='text-lg'>{animeDetails.members}</p>
                       
                   </div>
 

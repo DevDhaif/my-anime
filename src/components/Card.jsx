@@ -15,12 +15,11 @@ function Card({anime}) {
 
     
     
-    <div className='bg-bg-third text-bg-dark flex flex-col md:flex-row justify-between  relative rounded-md shadow-xl shadow-t-prime  ' >
-        <div className='md:w-96'>
-            <img className='w-96 object-cover h-full' src={anime.image_url} alt="" />
-        </div>
-        <section className='space-y-4 py-7 px-8 max-w-sm'>
-            <p className="font-poppins tracking-[0.7rem] text-2xl">MAPPA</p>
+    <div className='bg-bg-third text-bg-dark flex flex-col md:flex-row     rounded-md shadow-xl shadow-t-prime  ' >
+        
+            <img className='block object-fit w-full  sm:max-w-max  object-center    mb-4 sm:mb-0 ' src={anime.image_url} alt="" />
+        
+        <section className='space-y-4   p-4 max-w-xs  flex  flex-col  justify-between h-full'>
             
             <div className='flex flex-col space-y-4'>
                 <p className='uppercase text-4xl max-w-sm'> <span className='text-red-500'> { anime.title.split(' ')[0]} </span>  <br />{anime.title.substr(anime.title.indexOf(" ") + 1)}</p>
@@ -54,8 +53,7 @@ function Card({anime}) {
             </button>
         </section>
 
-        <p className='absolute inset-x-0 ml-12  inset-y-1/4 md:w-2/5 mx-auto  w-full md:rotate-90 text-red-500 font-semibold text-3xl tracking-[.85em]'>進撃の巨人</p>
-
+      
         
     </div>
   )

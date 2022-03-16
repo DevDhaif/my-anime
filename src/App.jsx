@@ -14,7 +14,7 @@ function App() {
     <div className='min-h-screen bg-bg-dark-nav     text-t-dark'>
     <Router>
     <Navbar/>
-        <div className='px-6 '>
+        <div className='px-6 max-w-6xl mx-auto my-4'>
           <Routes>
             <Route path='/' element={<Home/>}/>
             <Route path='/upcoming' element={<Upcoming/>}/>

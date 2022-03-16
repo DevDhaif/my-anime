@@ -33,7 +33,7 @@ function Upcoming() {
     
   return (
     <div className='container space-y-8 mt-4'> 
-    <h1 className='text-center text-2xl  font-robert  tracking-widest'><span className='text-teal-300 font-bold'> Upcoming</span> Animes</h1>
+    <h1 className='text-center text-2xl  font-robert text-t-dark  tracking-widest'><span className='text-teal-300 font-bold'> Upcoming</span> Animes</h1>
     <Swiper className=''
   modules={[Navigation, Pagination, Scrollbar, A11y,Autoplay]}
                   spaceBetween={50}
