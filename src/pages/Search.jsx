@@ -41,13 +41,13 @@ function Search() {
             <p className='text-lg md:text-3xl '>Search for Your favorite anime</p>
         </header>
 
-        <main className='space-y-4  '>
+        <main className='space-y-4 w-full '>
             <form 
-            className='text-bg-dark  mx-auto flex justify-center'
+            className='text-bg-dark  mx-auto w-full flex justify-center'
             onSubmit={handleSearch}
             >
                 <input 
-                className='px-4 py-2 w-full md:w-1/2 rounded-l-md  outline-none ' 
+                className='px-4 py-2 w-full md:w-1/2  rounded-l-md  outline-none ' 
                 type="text"
                 placeholder='Search for anime ...'
                 value={query}

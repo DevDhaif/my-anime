@@ -59,9 +59,9 @@ function Item() {
                       <p class="leading-8 text-left font-medium text-base">{animeDetails.synopsis}</p>
                       <p className='text-red-500'> {animeDetails.type}</p>
                       <p className='text-lg'>Episodes : {animeDetails.episodes}</p>
-                      <p className=' text-lg'>Score {animeDetails.score}</p>
-                      <p>{animeDetails.rated}</p>
-                      <p className='text-lg'>{animeDetails.members}</p>
+                      <p className=' text-lg'>{animeDetails.score && `Score ${animeDetails.score }`}</p>
+                      <p>{animeDetails.rated && `Rated ${animeDetails.rated }`}</p>
+                      <p className='text-lg'>{animeDetails.members && "Rates : "}{animeDetails.members}</p>
                       
                   </div>
 
@@ -70,14 +70,14 @@ function Item() {
                 </section>
                 <section className='bg-bg-dark/50 w-full text-white px-4 py-8 space-y-4'>
                 
-                  <h1>Episodes</h1>
+                  <h1 className='text-lg text-t-dark'>Episodes</h1>
                 <Swiper
                 modules={[Navigation, Pagination, Scrollbar, A11y,Autoplay]}
                                 spaceBetween={50}
                                 slidesPerView={2}
                                 loop={true}
                                 autoplay={{
-                                    delay: 1000,
+                                    delay: 2000,
                                     disableOnInteraction: false
                                 }}
                                 scrollbar={{ draggable: true, dragSize: 24 }}
@@ -85,8 +85,8 @@ function Item() {
                                 {anime.map((ep)=>(
                                 <SwiperSlide key={ep.episode_id} className="bg-bg-prime ">
                                 <div className='inline-flex items-center h-24 space-x-2 p-6 justify-center'>
+                                <a className=' text-lg' href={ep.forum_url} target="_blank" rel="noopener noreferrer">
                                         <p className=''>{ep.episode_id} {ep.title}</p>
-                                        <a className=' text-lg' href={ep.video_url} target="_blank" rel="noopener noreferrer">
                                         <GoEye className='fill-blue-200 hover:fill-blue-700'/>
                                         </a>
                                 </div>

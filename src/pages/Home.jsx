@@ -63,7 +63,7 @@ const handleClick=(an)=>{
           
         </div>
 
-        <section className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+        <section className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4'>
           {list.map((an)=>(
             <SimpleCard key={an.mal_id} an={an}/>
           ))}

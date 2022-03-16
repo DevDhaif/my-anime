@@ -49,7 +49,6 @@ function Upcoming() {
                       slidesPerView: 2,
                     },
                   }}
-                  slidesPerView={2}
                   loop={true}
                   autoplay={{
                       delay: 1000,
