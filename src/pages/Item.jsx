@@ -1,26 +1,43 @@
 import {useState,useEffect} from 'react'
 import {useNavigate,useParams,Link, useLocation} from 'react-router-dom'
 import axios from 'axios'
-import 'swiper/css';
 import {GoEye} from 'react-icons/go'
+// import SwiperCore, {Navigation,Scrollbar,Pagination,A11y,Autoplay} from 'swiper'
+// import {Swiper,SwiperSlide} from 'swiper/react'
+// import 'swiper/css';
+// SwiperCore.use([Navigation,Pagination,Scrollbar,A11y,Autoplay])
 import SwiperCore, {Navigation,Scrollbar,Pagination,A11y,Autoplay} from 'swiper'
 import {Swiper,SwiperSlide} from 'swiper/react'
 import 'swiper/css';
-
+import Spinner from '../components/Spinner'
 
 SwiperCore.use([Navigation,Pagination,Scrollbar,A11y,Autoplay])
+
 function Item() {
     const [anime,setAnime]=useState([])
     const [animeDetails,setAnimeDetails]=useState({})
+    const [loading,setLoading]=useState(false)
 
 
     const location = useLocation();
+    const navigate=useNavigate()
 
     const params=useParams()
 
     useEffect(()=>{
-        setAnimeDetails(location.state)
+      if(location?.state !== null)
+      {
+      setLoading(true)
+        setAnimeDetails(location?.state)
+        
         fetchAnimeDetails()
+      setLoading(false)
+    }
+    else{
+      
+      navigate('/notfound')
+    }
+
     },[])
 
     const fetchAnimeDetails=async()=>{
@@ -45,18 +62,18 @@ function Item() {
     }
 
   return (
-       
+        
         <main className='min-h-screen   py-4 bg-center bg-no-repeat bg-cover bg-opacity-10 ' style={{ 
                 backgroundImage: `url(${animeDetails.image_url})`}}>
             
             
-                <div class="p-4 space-y-8   bg-bg-dark/70  md:h-full text-white   justify-around    rounded-md shadow-md shadow-white ">
-                <section class="w-full md:flex md:flex-row   justify-start space-x-4">
-                  <img class="w-full block object-cover  sm:max-w-xs " src={animeDetails.image_url} alt=""/>
-                  <div class="space-y-3 px-2 py-8  w-full">
+                <div className="p-4 space-y-8   bg-bg-dark/70  md:h-full text-white   justify-around    rounded-md shadow-md shadow-white ">
+                <section className="w-full md:flex md:flex-row   justify-start space-x-4">
+                  <img className="w-full block object-cover  sm:max-w-xs " src={animeDetails.image_url} alt=""/>
+                  <div className="space-y-3 px-2 py-8  w-full">
                       <p className='text-lg text-center font-robert font-bold tracking-wider'>{animeDetails.title}</p>
                       <p>{animeDetails.airing}   </p>
-                      <p class="leading-8 text-left font-medium text-base">{animeDetails.synopsis}</p>
+                      <p className="leading-8 text-left font-medium text-base">{animeDetails.synopsis}</p>
                       <p className='text-red-500'> {animeDetails.type}</p>
                       <p className='text-lg'>Episodes : {animeDetails.episodes}</p>
                       <p className=' text-lg'>{animeDetails.score && `Score ${animeDetails.score }`}</p>
@@ -65,29 +82,51 @@ function Item() {
                       
                   </div>
 
-
+                  {loading && (
+                    <Spinner/>
+                )}
 
                 </section>
                 <section className='bg-bg-dark/50 w-full text-white px-4 py-8 space-y-4'>
                 
-                  <h1 className='text-lg text-t-dark'>Episodes</h1>
-                <Swiper
-                modules={[Navigation, Pagination, Scrollbar, A11y,Autoplay]}
-                                spaceBetween={50}
-                                slidesPerView={2}
-                                loop={true}
-                                autoplay={{
-                                    delay: 2000,
-                                    disableOnInteraction: false
-                                }}
-                                scrollbar={{ draggable: true, dragSize: 24 }}
-                                >
+                  <h1 className='text-lg font-semibold text-t-dark'>Episodes</h1>
+                  <Swiper className='py-4'
+                                            modules={[Navigation, Pagination, Scrollbar, A11y,Autoplay]}
+                                            pagination={{clickable:true}}
+                                            spaceBetween={50}
+                                            navigation={{
+                                              nextEl: '.swiper-button-next',
+                                              prevEl: '.swiper-button-prev',
+                                            }}
+                                            breakpoints={{
+                                              // when window width is >= 640px
+                                              640: {
+                                                width: 640,
+                                                slidesPerView: 1,
+                                              },
+                                              // when window width is >= 768px
+                                              768: {
+                                                width: 768,
+                                                slidesPerView: 2,
+                                              },
+                                            }}
+                                            loop={true}
+                                            autoplay={{
+                                                delay: 1000,
+                                                disableOnInteraction: false
+                                            }}
+                                            scrollbar={{ draggable: true, dragSize: 24,el: '.swiper-scrollbar' }}
+                                            >
                                 {anime.map((ep)=>(
-                                <SwiperSlide key={ep.episode_id} className="bg-bg-prime ">
-                                <div className='inline-flex items-center h-24 space-x-2 p-6 justify-center'>
-                                <a className=' text-lg' href={ep.forum_url} target="_blank" rel="noopener noreferrer">
+                                <SwiperSlide key={ep.episode_id} className="shadow  shadow-slate-100/50  my-8  py-1 bg-bg-dark-nav ">
+                                <div className='px-4 '>
+                                <a className='text-white  w-full  text-lg' href={ep.forum_url} target="_blank" rel="noopener noreferrer">
                                         <p className=''>{ep.episode_id} {ep.title}</p>
-                                        <GoEye className='fill-blue-200 hover:fill-blue-700'/>
+                                        
+                                        <div className='inline-flex    space-x-4'>
+                                        <GoEye className='fill-blue-200 mt-2  hover:fill-blue-500 '/>
+                                        <p >Watch</p>
+                                        </div>
                                         </a>
                                 </div>
                                 </SwiperSlide>
