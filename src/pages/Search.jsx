@@ -1,22 +1,19 @@
 import {useState} from 'react'
 import Card from '../components/Card'
-
 import axios from "axios";
-import { Link } from 'react-router-dom';
 import Spinner from '../components/Spinner';
 
 function Search() {
+
     const [query,setQuery]=useState('')
     const [list,setList]=useState([])
     const [loading,setLoading]=useState(false)
 
 
-
-    const handleSearch=(e)=>{
+    const handleSearch= async(e)=>{
         e.preventDefault();
         setLoading(true)
         
-
         const options = {
         method: 'GET',
         url: 'https://jikan1.p.rapidapi.com/search/anime',
@@ -35,12 +32,13 @@ function Search() {
             console.error(error);
         });
     }
+    
+    
   return (
     <div className='space-y-4  flex flex-col items-center'>
         <header>
             <p className='text-lg md:text-3xl '>Search for Your favorite anime</p>
         </header>
-
         <main className='space-y-4 w-full '>
             <form 
             className='text-bg-dark  mx-auto w-full flex justify-center'

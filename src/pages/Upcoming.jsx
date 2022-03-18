@@ -100,38 +100,6 @@ function Upcoming() {
         ))}
         </div>
 
-    {/**
-  
-    <section className='bg-bg-dark/50 w-full text-white px-4 py-8 space-y-4'>
-                
-    <h1>Episodes</h1>
-  <Swiper
-  modules={[Navigation, Pagination, Scrollbar, A11y,Autoplay]}
-                  spaceBetween={50}
-                  slidesPerView={2}
-                  loop={true}
-                  autoplay={{
-                      delay: 1000,
-                      disableOnInteraction: false
-                  }}
-                  scrollbar={{ draggable: true, dragSize: 24 }}
-                  >
-                  {anime.map((ep)=>(
-                  <SwiperSlide key={ep.episode_id} className="bg-bg-prime ">
-                  <div className='inline-flex items-center h-24 space-x-2 p-6 justify-center'>
-                          <p className=''>{ep.episode_id} {ep.title}</p>
-                          <a className=' text-lg' href={ep.video_url} target="_blank" rel="noopener noreferrer">
-                          <GoEye className='fill-blue-200 hover:fill-blue-700'/>
-                          </a>
-                  </div>
-                  </SwiperSlide>
-                  ))}
-                  
-                  </Swiper>
-
-  </section>
- */}
-
     </div>
   )
 }

@@ -1,18 +1,14 @@
 import {useState,useEffect} from 'react'
-import {useNavigate,useParams,Link, useLocation} from 'react-router-dom'
+import {useNavigate,useParams, useLocation} from 'react-router-dom'
 import axios from 'axios'
 import {GoEye} from 'react-icons/go'
-// import SwiperCore, {Navigation,Scrollbar,Pagination,A11y,Autoplay} from 'swiper'
-// import {Swiper,SwiperSlide} from 'swiper/react'
-// import 'swiper/css';
-// SwiperCore.use([Navigation,Pagination,Scrollbar,A11y,Autoplay])
 import SwiperCore, {Navigation,Scrollbar,Pagination,A11y,Autoplay} from 'swiper'
 import {Swiper,SwiperSlide} from 'swiper/react'
 import 'swiper/css';
 import Spinner from '../components/Spinner'
 
 SwiperCore.use([Navigation,Pagination,Scrollbar,A11y,Autoplay])
-
+const colr="red-500"
 function Item() {
     const [anime,setAnime]=useState([])
     const [animeDetails,setAnimeDetails]=useState({})
@@ -66,7 +62,7 @@ function Item() {
         <main className='min-h-screen   py-4 bg-center bg-no-repeat bg-cover bg-opacity-10 ' style={{ 
                 backgroundImage: `url(${animeDetails.image_url})`}}>
             
-            
+                <h1 className={`text-7xl text-${colr}`}>hello</h1>
                 <div className="p-4 space-y-8   bg-bg-dark/70  md:h-full text-white   justify-around    rounded-md shadow-md shadow-white ">
                 <section className="w-full md:flex md:flex-row   justify-start space-x-4">
                   <img className="w-full block object-cover  sm:max-w-xs " src={animeDetails.image_url} alt=""/>

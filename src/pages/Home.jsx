@@ -2,7 +2,6 @@ import {useState,useEffect} from 'react'
 import axios from 'axios';
 import 'antd/dist/antd.css';
 import { Select } from 'antd';
-import { useNavigate } from 'react-router-dom';
 import SimpleCard from '../components/SimpleCard';
 const { Option } = Select;
 
@@ -10,7 +9,7 @@ function Home() {
   const [list,setList]=useState([])
   const [genre,setGenre]=useState(1)
 
-  const navigate=useNavigate()
+
 
  const fetchAnimeDetails=(  )=>{
   const options = {
@@ -40,10 +39,7 @@ const handleChange=(e)=>{
   setGenre(e.target.value)
   
 }
-const handleClick=(an)=>{
-  console.log(an);
-  // navigate(`${an.mal_id}`,{state:an})
-}
+
     
   return (
     <div className='container mx-auto space-y-8 mt-4'> 
