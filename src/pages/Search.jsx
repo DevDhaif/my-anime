@@ -3,24 +3,33 @@ import Card from '../components/Card'
 import axios from "axios";
 import Spinner from '../components/Spinner';
 
+
 function Search() {
 
-    const [query,setQuery]=useState('')
+    const [query,setQuery]=useState('attack')
     const [list,setList]=useState([])
     const [loading,setLoading]=useState(false)
+    const api = {
+        base: import.meta.env.VITE_BASE_URL,
+        host: import.meta.env.VITE_HOST,
+        key: import.meta.env.VITE_KEY
+    };
 
-
+    
+    
     const handleSearch= async(e)=>{
         e.preventDefault();
+        
+       
         setLoading(true)
         
         const options = {
         method: 'GET',
-        url: 'https://jikan1.p.rapidapi.com/search/anime',
+        url: `${api.base}/search/anime`,
         params: {q: query},
         headers: {
             'x-rapidapi-host': 'jikan1.p.rapidapi.com',
-            'x-rapidapi-key': 'a5990e9e61mshcc17f1aac7fdd5ap12a58ajsn263efd24ef47'
+            'x-rapidapi-key': api.key
         }
         };
 
@@ -38,6 +47,7 @@ function Search() {
     <div className='space-y-4  flex flex-col items-center'>
         <header>
             <p className='text-lg md:text-3xl '>Search for Your favorite anime</p>
+            
         </header>
         <main className='space-y-4 w-full '>
             <form 
@@ -70,6 +80,7 @@ function Search() {
                 
             </div>
             )}
+
         </main>
     </div>
   )

@@ -28,3 +28,35 @@
 //         console.error(error);
 //     });
 // } 
+import {useState,useEffect} from 'react'
+
+
+
+function useFetch(url,options) {
+  const [loading,setLoading]=useState(true)
+  const [data,setData]=useState(null)
+  const [error,setError]=useState(null)
+
+  useEffect(()=>{
+    const fetchData=async()=>{
+    try{
+      const response=await fetch(url,options)
+      const data=await response.json()
+      console.log(data);
+      setData(data)
+      setLoading(false)
+    }
+    catch(error){
+      setError(error)
+      setLoading(false)
+    }
+    }
+
+    fetchData()
+    //eslint-disable-next-line react-hoooks/exhaustive-deps
+  },[])
+
+  return {data,loading,error}
+}
+
+export default useFetch
